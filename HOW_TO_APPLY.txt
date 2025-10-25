@@ -1,0 +1,17 @@
+
+---
+📌 **How to apply the patch**
+1) Replace your current `model.py` with the one in this ZIP.
+2) (Optional) In `streamlit_app.py`, after `df = pd.read_csv(path)`, add:
+
+```python
+if df is None or df.empty:
+    st.warning("No rows to forecast after reading the file.")
+else:
+    outs = multi_forecast(df, horizons=HORIZONS)
+```
+
+The new `model.py`:
+- auto-detects **Date/Price** columns (supports names like `Close`, `Adj Close`, `price`, etc.)
+- coerces non-numeric strings to NaN and drops them safely
+- returns empty forecasts instead of crashing, so the UI can show a friendly message.

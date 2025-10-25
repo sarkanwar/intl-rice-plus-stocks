@@ -1,3 +1,10 @@
+# at top of streamlit_app.py
+from news_tab import news_tab
+
+# wherever you create tabs:
+tab1, tab2, tab3 = st.tabs(["Rice Benchmarks", "Company Stocks", "News & Weather"])
+with tab3:
+    news_tab()
 
 import os, json, math
 import streamlit as st, pandas as pd
